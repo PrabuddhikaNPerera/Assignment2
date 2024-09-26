@@ -1,6 +1,8 @@
 #Student Name : Prabuddhika Panawalage
 #Student ID : 10609924
 
+import random
+
 #Function to get number of players
 def inputNumber(prompt):
     while True:
@@ -43,6 +45,15 @@ def main():
 
     print("\nLet's Start the Game!")
 
+    #StartGame
+    first_letter = random.choice('abcdefghijklmnopqrstuvwxyz')
+    currentPlayer = 0
+    while True:
+        current_word_type = random.choice(wordTypes)
+        print(f"{playerNames[currentPlayer]} is up next. \nEnter a {current_word_type} starting with '{first_letter}':")
+
+        word = inputWord("Your word: ")
+        print (word)
 
 
 main()
