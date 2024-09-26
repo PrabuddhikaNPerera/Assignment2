@@ -2,6 +2,8 @@
 #Student ID : 10609924
 
 import random
+import requests
+
 
 #Function to get number of players
 def inputNumber(prompt):
@@ -23,13 +25,20 @@ def inputWord(prompt):
         print("Invalid input. Please enter a valid word containing only letters.")
 
 
+def checkWordnik(word, wordType, apiKey):
+    url=f'http://api.wordnik.com/v4/words.json/randomWord?api_key={apiKey}'
+    url = f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=5&partOfSpeech={wordType}&api_key={apiKey}"
+    response = requests.get(url)
+    return response.json()
+
+
 def main():
     #Define variables
     chain = 0
     wordTypes = ["noun","verb","adjective"]
     playerNames = []
     usedWords = []
-    api_key = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
+    apiKey = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
 
     #Welcome message
     print("Welcome to WordChain!")
@@ -46,14 +55,26 @@ def main():
     print("\nLet's Start the Game!")
 
     #StartGame
-    first_letter = random.choice('abcdefghijklmnopqrstuvwxyz')
+    firstLetter = random.choice('abcdefghijklmnopqrstuvwxyz')
     currentPlayer = 0
     while True:
-        current_word_type = random.choice(wordTypes)
-        print(f"{playerNames[currentPlayer]} is up next. \nEnter a {current_word_type} starting with '{first_letter}':")
+        currentWordType = random.choice(wordTypes)
+        print(f"{playerNames[currentPlayer]} is up next. \nEnter a {currentWordType} starting with '{firstLetter}':")
 
         word = inputWord("Your word: ")
         print (word)
+
+        # Check the first letter of the input word and if the word was used before
+        if word[0] != firstLetter or word in usedWords:
+            print(f"Invalid word! Word chain is broken with your input '{word}'.")
+            break
+
+        # Check if the word is recognized
+        definitions = checkWordnik(word, currentWordType, apiKey)
+        if not definitions:
+            print(f"'{word}' is not recognized as a {currentWordType}. The game is over.")
+            break
+
 
 
 main()

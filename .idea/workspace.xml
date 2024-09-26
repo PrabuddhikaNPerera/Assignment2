@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4f1146e-4016-40d7-bb07-4236ca8ccc14" name="Changes" comment="Get Player Names done">
+    <list default="true" id="c4f1146e-4016-40d7-bb07-4236ca8ccc14" name="Changes" comment="Start the game done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordchain.py" beforeDir="false" afterPath="$PROJECT_DIR$/wordchain.py" afterDir="false" />
     </list>
@@ -108,12 +108,21 @@
       <option name="project" value="LOCAL" />
       <updated>1727329994442</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Start the game done">
+      <option name="closed" value="true" />
+      <created>1727333413573</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727333413573</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Get Player Names done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get Player Names done" />
+    <MESSAGE value="Start the game done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start the game done" />
   </component>
 </project>
