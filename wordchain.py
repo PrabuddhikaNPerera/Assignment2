@@ -1,6 +1,7 @@
 #Student Name : Prabuddhika Panawalage
 #Student ID : 10609924
 
+#Function to get number of players
 def inputNumber(prompt):
     while True:
         try:
@@ -12,11 +13,21 @@ def inputNumber(prompt):
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
+def inputWord(prompt):
+    while True:
+        word = input(prompt).strip()
+        if word.isalpha() and len(word) > 0:  # Check if input is consists entirely of letters and is at least one character long
+            return word
+        print("Invalid input. Please enter a valid word containing only letters.")
+
 
 def main():
     #Define variables
-    numberofplayers = 0
+    chain = 0
+    wordTypes = ["noun","verb","adjective"]
     playerNames = []
+    usedWords = []
+    api_key = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
 
     #Welcome message
     print("Welcome to WordChain!")
@@ -25,8 +36,12 @@ def main():
     numberofplayers = inputNumber("Enter the number of players (minimum 2): ")
     print (numberofplayers)
 
+    # Get player names
+    for i in range(numberofplayers):
+        name = inputWord(f"Enter the name for player {i + 1}: ")
+        playerNames.append(name)
 
-
+    print("\nLet's Start the Game!")
 
 
 
