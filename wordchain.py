@@ -1,6 +1,6 @@
 #Student Name : Prabuddhika Panawalage
 #Student ID : 10609924
-
+import json
 import random
 import requests
 
@@ -26,8 +26,7 @@ def inputWord(prompt):
 
 
 def checkWordnik(word, wordType, apiKey):
-    url=f'http://api.wordnik.com/v4/words.json/randomWord?api_key={apiKey}'
-    url = f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=5&partOfSpeech={wordType}&api_key={apiKey}"
+    url = f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=1&partOfSpeech={wordType}&api_key={apiKey}"
     response = requests.get(url)
     return response.json()
 
@@ -59,22 +58,53 @@ def main():
     currentPlayer = 0
     while True:
         currentWordType = random.choice(wordTypes)
-        print(f"{playerNames[currentPlayer]} is up next. \nEnter a {currentWordType} starting with '{firstLetter}':")
+        print(f"\n{playerNames[currentPlayer]} is up next. \nEnter a {currentWordType} starting with '{firstLetter}':")
 
         word = inputWord("Your word: ")
         print (word)
 
         # Check the first letter of the input word and if the word was used before
         if word[0] != firstLetter or word in usedWords:
-            print(f"Invalid word! Word chain is broken with your input '{word}'.")
+            print(f"\nInvalid word! Word chain is broken with your input '{word}'.")
             break
 
         # Check if the word is recognized
         definitions = checkWordnik(word, currentWordType, apiKey)
         if not definitions:
-            print(f"'{word}' is not recognized as a {currentWordType}. The game is over.")
+            print(f"\n'{word}' is not recognized as a {currentWordType}. The game is over.")
             break
 
+        # Valid word, update game state
+        chain += 1
+        usedWords.append(word)
+        firstLetter= word[-1] # Update starting letter for next player
+        print(f"\nGood job, {playerNames[currentPlayer]}! Definitions:")
+
+        print(f"- {definitions[0]}")
+
+        print(f"\nThe word chain is now {chain} links long")
+
+        # Move to the next player
+        currentPlayer = (currentPlayer + 1) % numberofplayers
+
+    # Log the game
+    print(f"Final chain length: {chain}")
+    log_entry = {
+        "players": numberofplayers,
+        "names": playerNames,
+        "chain": chain
+    }
+
+    try:
+        with open("logs.txt", "r") as file:
+            logs = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        logs = []
+
+    logs.append(log_entry)
+
+    with open("logs.txt", "w") as file:
+        json.dump(logs, file, indent=4)
 
 
 main()
