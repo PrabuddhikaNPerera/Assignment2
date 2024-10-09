@@ -24,9 +24,30 @@ def inputWord(prompt):
             return word
         print("Invalid input. Please enter a valid word containing only letters.")
 
+def logGame(noPlayers, playerNames, chain):
+    log_entry = {
+        "players": noPlayers,
+        "names": playerNames,
+        "chain": chain
+    }
+
+    try:
+        with open("logs.txt", "r") as file:
+            logs = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        logs = []
+
+    logs.append(log_entry)
+
+    with open("logs.txt", "w") as file:
+        json.dump(logs, file, indent=4)
+        file.close()
+
+        print("Game log saved")
+
 
 def checkWordnik(word, wordType, apiKey):
-    url = f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=1&partOfSpeech={wordType}&api_key={apiKey}"
+    url = f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=5&partOfSpeech={wordType}&api_key={apiKey}"
     response = requests.get(url)
     return response.json()
 
@@ -70,6 +91,7 @@ def main():
 
         # Check if the word is recognized
         definitions = checkWordnik(word, currentWordType, apiKey)
+        print(f"{definitions}")
         if not definitions:
             print(f"\n'{word}' is not recognized as a {currentWordType}. The game is over.")
             break
@@ -89,22 +111,6 @@ def main():
 
     # Log the game
     print(f"Final chain length: {chain}")
-    log_entry = {
-        "players": numberofplayers,
-        "names": playerNames,
-        "chain": chain
-    }
-
-    try:
-        with open("logs.txt", "r") as file:
-            logs = json.load(file)
-    except (FileNotFoundError, json.JSONDecodeError):
-        logs = []
-
-    logs.append(log_entry)
-
-    with open("logs.txt", "w") as file:
-        json.dump(logs, file, indent=4)
-
+    logGame(numberofplayers,playerNames,chain)
 
 main()
