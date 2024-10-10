@@ -6,6 +6,9 @@ import json
 import tkinter
 from tkinter import messagebox
 
+import requests
+
+
 # Define the ProgramGUI class for the application interface
 class ProgramGUI :
     # Initialize the main window for the GUI
@@ -41,12 +44,18 @@ class ProgramGUI :
         self.ChainLable = tkinter.Label(self.guiFrame,padx=10, pady=10)
         self.ChainLable.grid(row=2,column=0, sticky="w")
 
+        self.statsLabel = tkinter.Label(self.guiFrame, padx=10, pady=10)
+        self.statsLabel.grid(row=3, column=0, sticky="w")
+
         # Create buttons for navigating logs and showing statistics
         self.nextButton = tkinter.Button(self.guiFrame, text="Next Log", command=self.showLog)
-        self.nextButton.grid(row=3, column=0,sticky="w")
+        self.nextButton.grid(row=4, column=0,sticky="w")
 
         self.StatButton = tkinter.Button(self.guiFrame, text="Show Stats", command=self.showStats)
-        self.StatButton.grid(row=3, column=1,sticky="w")
+        self.StatButton.grid(row=4, column=1,sticky="w")
+
+        self.wordOfTheDayButton = tkinter.Button(self.guiFrame, text="Word of the Day",command=self.showWordOfTheDay)
+        self.wordOfTheDayButton.grid(row=4, column=2, sticky="w", padx=10, pady=10)
 
         # Display the first log entry when the GUI starts
         self.showLog()
@@ -56,14 +65,16 @@ class ProgramGUI :
     def showLog(self):
         if self.nextLog < len(self.logs):
             record=self.logs[self.nextLog]
-            recordNo = f"Log #: {self.nextLog + 1}"
+            recordNo = f"Log #: {self.nextLog + 1} {record['date_time']}"
             playerCount = f"Players: {record['players']}  {record['names']}"
             chainLength = f"Chain Length: {record['chain']}"
+            stats = f"Nouns: {record['stats']['noun']}, Verbs: {record['stats']['verb']}, Adjectives: {record['stats']['adjective']}"
 
             # Update the labels with the current log details
             self.logLable.configure(text=recordNo)
             self.playerLable.configure(text=playerCount)
             self.ChainLable.configure(text=chainLength)
+            self.statsLabel.configure(text=stats)
 
             # Move to the next log for the next call
             self.nextLog=self.nextLog+1
@@ -83,6 +94,24 @@ class ProgramGUI :
         # Prepare the statistics message to display
         msg = f"Total games : {noGames}\n Average players per game:{playerAvg}\n Maximum chain length: {maxChain}"
         messagebox.showinfo("WordChain Statistics",msg)
+
+    def showWordOfTheDay(self):
+        apiKey = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
+        url = f"https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key={apiKey}"
+
+        try:
+            response = requests.get(url)
+            wordOfTheDay = response.json()
+            word = wordOfTheDay['word']
+            definition = requests.get(
+                f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=1&api_key={apiKey}")
+            meaning = definition.json()
+            meaningToShow = meaning[0]['text'] if meaning else "No definition found."
+
+            messagebox.showinfo("Word of the Day", f"Word: {word}\nDefinition: {meaningToShow}")
+        except:
+            messagebox.showerror("Error", f"Failed to fetch Word of the Day")
+
 
 # Create an instance of the ProgramGUI class to run the application
 gui= ProgramGUI () # create a ProgramGUI object
