@@ -54,5 +54,19 @@
             "verb": 0,
             "adjective": 0
         }
+    },
+    {
+        "players": 2,
+        "names": [
+            "sam",
+            "eric"
+        ],
+        "chain": 0,
+        "date_time": "2024-10-10 16:52:31",
+        "stats": {
+            "noun": 0,
+            "verb": 0,
+            "adjective": 0
+        }
     }
 ]

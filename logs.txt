@@ -14,5 +14,45 @@
             "nila"
         ],
         "chain": 1
+    },
+    {
+        "players": 2,
+        "names": [
+            "Sam",
+            "Jane"
+        ],
+        "chain": 0
+    },
+    {
+        "players": 2,
+        "names": [
+            "Nik",
+            "Jam"
+        ],
+        "chain": 0
+    },
+    {
+        "players": 2,
+        "names": [
+            "Dey",
+            "Nic"
+        ],
+        "chain": 0
+    },
+    {
+        "players": 2,
+        "names": [
+            "adam",
+            "mary"
+        ],
+        "chain": 0
+    },
+    {
+        "players": 2,
+        "names": [
+            "edith",
+            "cowan"
+        ],
+        "chain": 1
     }
 ]
