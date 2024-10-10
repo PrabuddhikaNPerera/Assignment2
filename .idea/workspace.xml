@@ -7,6 +7,7 @@
     <list default="true" id="c4f1146e-4016-40d7-bb07-4236ca8ccc14" name="Changes" comment="Start the game done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logviewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/logviewer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordchain.py" beforeDir="false" afterPath="$PROJECT_DIR$/wordchain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +159,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728449772541</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Start the game done">
+      <option name="closed" value="true" />
+      <created>1728453166715</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728453166715</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Start the game done">
+      <option name="closed" value="true" />
+      <created>1728453192899</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728453192899</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Start the game done">
+      <option name="closed" value="true" />
+      <created>1728453201006</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728453201006</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,6 +200,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Get Player Names done" />
+    <MESSAGE value="Logviewer updated" />
     <MESSAGE value="Start the game done" />
     <option name="LAST_COMMIT_MESSAGE" value="Start the game done" />
   </component>
