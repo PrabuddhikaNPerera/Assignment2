@@ -98,5 +98,21 @@
             "pkg"
         ],
         "chain": 1
+    },
+    {
+        "players": 2,
+        "names": [
+            "saman",
+            "ajith"
+        ],
+        "chain": 1
+    },
+    {
+        "players": 2,
+        "names": [
+            "er",
+            "tr"
+        ],
+        "chain": 1
     }
 ]
