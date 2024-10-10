@@ -141,5 +141,19 @@
         ],
         "chain": 2,
         "date_time": "2024-10-10 13:25:44"
+    },
+    {
+        "players": 2,
+        "names": [
+            "saman",
+            "anil"
+        ],
+        "chain": 1,
+        "date_time": "2024-10-10 13:34:58",
+        "stats": {
+            "noun": 0,
+            "verb": 1,
+            "adjective": 0
+        }
     }
 ]

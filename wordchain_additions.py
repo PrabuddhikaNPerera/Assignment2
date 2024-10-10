@@ -28,12 +28,13 @@ def inputWord(prompt):
         print("Invalid input. Please enter a valid word containing only letters.") # Error message for invalid input
 
 # Function to log game details to a JSON file
-def logGame(noPlayers, playerNames, chain):
+def logGame(noPlayers, playerNames, chain,stats):
     log_entry = {
         "players": noPlayers,
         "names": playerNames,
         "chain": chain,
-        "date_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "date_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "stats": stats
     }
     # Attempt to read existing logs
     try:
@@ -69,9 +70,7 @@ def main():
     playerNames = []
     usedWords = []
     apiKey = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
-    noun=0
-    verb=0
-    adjective=0
+    stats = {"noun": 0, "verb": 0, "adjective": 0} #Dictionary
 
     #Welcome message
     print("Welcome to WordChain!")
@@ -122,12 +121,7 @@ def main():
         if meaning:
             print(f"\nGood job, {playerNames[currentPlayer]}! Definitions:")
             print(f"{meaning}")
-            if currentWordType == "noun":
-                noun+=1
-            elif currentWordType == "verb":
-                verb+=1
-            elif currentWordType == "adjective":
-                adjective+=1
+            stats[currentWordType] += 1  # Increment count for the word type
         else:
             print(f"\n'{word}' is not recognized as a {currentWordType}. The game is over.")
             break
@@ -145,7 +139,7 @@ def main():
 
     # Log the game
     print(f"Final chain length: {chain}")
-    logGame(numberofplayers,playerNames,chain)
+    logGame(numberofplayers,playerNames,chain,stats)
 
     # Get a random word and its definition
     randomWordData = getRandomWord(apiKey)
