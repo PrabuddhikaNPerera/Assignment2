@@ -69,6 +69,9 @@ def main():
     playerNames = []
     usedWords = []
     apiKey = "bnj8kxwj4vm4oe0ri9pwkk8awoug7zqs52r1taf97l8bnbjdv"  #API key from Wordnik
+    noun=0
+    verb=0
+    adjective=0
 
     #Welcome message
     print("Welcome to WordChain!")
@@ -78,9 +81,12 @@ def main():
     print (numberofplayers)
 
     # Get player names
-    for i in range(numberofplayers):
-        name = inputWord(f"Enter the name for player {i + 1}: ")
-        playerNames.append(name)
+    while len(playerNames) < numberofplayers:
+        name = inputWord(f"Enter the name for player {len(playerNames) + 1}: ")
+        if name not in playerNames:
+            playerNames.append(name)
+        else:
+            print("That name is already entered. Please choose a different name.")
 
     print("\nLet's Start the Game!")
 
@@ -116,6 +122,12 @@ def main():
         if meaning:
             print(f"\nGood job, {playerNames[currentPlayer]}! Definitions:")
             print(f"{meaning}")
+            if currentWordType == "noun":
+                noun+=1
+            elif currentWordType == "verb":
+                verb+=1
+            elif currentWordType == "adjective":
+                adjective+=1
         else:
             print(f"\n'{word}' is not recognized as a {currentWordType}. The game is over.")
             break
