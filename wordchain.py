@@ -4,6 +4,8 @@
 # Import necessary modules
 import json
 import random
+import re
+
 import requests
 
 # Function to get the number of players for the game

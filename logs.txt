@@ -1,17 +1,18 @@
 [
-
     {
         "players": 2,
         "names": [
-            "saman",
-            "anil"
+            "sanuk",
+            "nilana"
         ],
-        "chain": 1,
-        "date_time": "2024-10-10 13:34:58",
-        "stats": {
-            "noun": 0,
-            "verb": 1,
-            "adjective": 0
-        }
+        "chain": 0
+    },
+    {
+        "players": 2,
+        "names": [
+            "sanuk",
+            "nila"
+        ],
+        "chain": 1
     }
 ]

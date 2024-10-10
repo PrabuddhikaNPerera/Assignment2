@@ -38,7 +38,7 @@ def logGame(noPlayers, playerNames, chain,stats):
     }
     # Attempt to read existing logs
     try:
-        with open("logs.txt", "r") as file:
+        with open("logs_add.txt", "r") as file:
             logs = json.load(file) # Load existing game logs
     except (FileNotFoundError, json.JSONDecodeError):
         logs = [] # If file not found or JSON is invalid, initialize logs as an empty list
@@ -46,7 +46,7 @@ def logGame(noPlayers, playerNames, chain,stats):
     logs.append(log_entry) # Append new log entry to the logs list
 
     # Write updated logs back to the file
-    with open("logs.txt", "w") as file:
+    with open("logs_add.txt", "w") as file:
         json.dump(logs, file, indent=4)
         file.close()
         print("Game log saved")

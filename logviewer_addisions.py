@@ -19,7 +19,7 @@ class ProgramGUI :
 
         # Attempt to load log data from a JSON file
         try:
-            with open("logs.txt", "r") as file:
+            with open("logs_add.txt", "r") as file:
                 self.logs = json.load(file) # Parse JSON data into a Python object
         # Handle errors for missing or invalid log file
         except (FileNotFoundError,json.JSONDecodeError):
@@ -100,16 +100,20 @@ class ProgramGUI :
         url = f"https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key={apiKey}"
 
         try:
+            # Send a GET request to the Word of the Day API
             response = requests.get(url)
-            wordOfTheDay = response.json()
-            word = wordOfTheDay['word']
+            wordOfTheDay = response.json() # Parse the JSON response to extract the word of the day
+            word = wordOfTheDay['word'] # Extract the word from the response
+            # Send a GET request to fetch the definitions of the word
             definition = requests.get(
                 f"https://api.wordnik.com/v4/word.json/{word}/definitions?limit=1&api_key={apiKey}")
-            meaning = definition.json()
+            meaning = definition.json() # Parse the definitions response
+            # Check if definitions were returned and prepare the text for display
             meaningToShow = meaning[0]['text'] if meaning else "No definition found."
-
+            # Display the word of the day and its definition in a message box
             messagebox.showinfo("Word of the Day", f"Word: {word}\nDefinition: {meaningToShow}")
         except:
+            # Handle any errors that occur during the API requests
             messagebox.showerror("Error", f"Failed to fetch Word of the Day")
 
 
