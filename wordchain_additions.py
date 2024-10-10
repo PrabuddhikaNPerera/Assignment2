@@ -5,6 +5,7 @@
 import json
 import random
 import requests
+from datetime import datetime
 
 # Function to get the number of players for the game
 def inputNumber(prompt):
@@ -31,7 +32,8 @@ def logGame(noPlayers, playerNames, chain):
     log_entry = {
         "players": noPlayers,
         "names": playerNames,
-        "chain": chain
+        "chain": chain,
+        "date_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     # Attempt to read existing logs
     try:
